@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RED TAG Form - Robotics Warehouse</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>RED TAG</h1>
+            <p>Asset Malfunction & Part Replacement Form</p>
+        </div>
+
+        <form id="redTagForm">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="mfc">MFC *</label>
+                    <select id="mfc" name="mfc" required>
+                        <option value="">Select MFC</option>
+                        <option value="HLN01">HLN01</option>
+                        <option value="EMK01">EMK01</option>
+                        <option value="BS01">BS01</option>
+                        <option value="DAL01">DAL01</option>
+                        <option value="NYC01">NYC01</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="removalDate">Removal Date *</label>
+                    <input type="date" id="removalDate" name="removalDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="taggedBy">Tagged By *</label>
+                    <input type="text" id="taggedBy" name="taggedBy" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemType">Item Type *</label>
+                    <select id="itemType" name="itemType" required>
+                        <option value="">Select Item Type</option>
+                        <option value="Spare Part">Spare Part</option>
+                        <option value="NOT Spare Part">NOT Spare Part</option>
+                        <option value="Removed During FCO">Removed During FCO</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="partNumber">Part Number *</label>
+                    <input type="text" id="partNumber" name="partNumber" placeholder="Enter part number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="removedFrom">Removed From (Asset SN) *</label>
+                    <input type="text" id="removedFrom" name="removedFrom" placeholder="Enter asset serial number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="serviceCallId">Service Call ID</label>
+                    <input type="text" id="serviceCallId" name="serviceCallId" placeholder="Enter service call ID">
+                </div>
+
+                <div class="form-group">
+                    <label for="reasonRemove">Reason of Remove *</label>
+                    <select id="reasonRemove" name="reasonRemove" required>
+                        <option value="">Select Reason</option>
+                        <option value="Scrap">Scrap</option>
+                        <option value="Defected">Defected</option>
+                        <option value="Required For R&D">Required For R&D</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="comments">Comments</label>
+                <textarea id="comments" name="comments" rows="4" placeholder="Enter additional comments or details..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Attach Files</label>
+                <div class="file-upload">
+                    <button type="button" class="file-btn" onclick="useCamera()">📷 Use Camera</button>
+                    <button type="button" class="file-btn" onclick="chooseFile()">📁 Choose File</button>
+                    <input type="file" id="fileInput" style="display: none;" multiple accept="image/*,.pdf,.doc,.docx">
+                    <input type="file" id="cameraInput" style="display: none;" accept="image/*" capture="camera">
+                </div>
+                <div id="fileList" style="margin-top: 10px;"></div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" class="action-btn save-btn" onclick="saveForm()">💾 Save Form</button>
+                <button type="button" class="action-btn print-btn" onclick="printForm()">🖨️ Print</button>
+                <button type="button" class="action-btn pdf-btn" onclick="saveAsPDF()">📄 Save as PDF</button>
+                <button type="button" class="action-btn excel-btn" onclick="exportToExcel()">📊 Export to Excel</button>
+            </div>
+        </form>
+
+        <div id="statusMessage" class="status-message"></div>
+
+        <div class="analytics-section">
+            <h2 class="analytics-title">🤖 AI Analytics Dashboard</h2>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>Most Replaced Parts</h3>
+                    <div id="topParts">Loading analytics...</div>
+                </div>
+                <div class="analytics-card">
+                    <h3>Most Handled Assets</h3>
+                    <div id="topAssets">Loading analytics...</div>
+                </div>
+                <div class="analytics-card">
+                    <h3>Failure Trends</h3>
+                    <div id="failureTrends">Loading analytics...</div>
+                </div>
+                <div class="analytics-card">
+                    <h3>MFC Performance</h3>
+                    <div id="mfcStats">Loading analytics...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jsPDF and html2canvas for PDF export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
